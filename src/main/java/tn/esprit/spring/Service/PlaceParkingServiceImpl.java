@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Entity.PlaceParking;
+import tn.esprit.spring.Repository.ParkingRepository;
 import tn.esprit.spring.Repository.PlaceParkingRepository;
 
 @Service
 public class PlaceParkingServiceImpl implements PlaceParkingService {
 	@Autowired
 	PlaceParkingRepository placeparkingRepository;
+	@Autowired
+	ParkingRepository parkingRepository;
 	
 	@Override
 	public List<PlaceParking> retrieveAllPlaceParkings() {
@@ -20,7 +23,9 @@ public class PlaceParkingServiceImpl implements PlaceParkingService {
 	}
 
 	@Override
-	public PlaceParking addPlaceParking(PlaceParking pp) {
+	public PlaceParking addPlaceParking(long id,PlaceParking pp) {
+		parkingRepository.findById(id);
+		pp.setParking(parkingRepository.findById(id).get());
 		placeparkingRepository.save(pp);
 		 return pp;
 	}
@@ -30,16 +35,23 @@ public class PlaceParkingServiceImpl implements PlaceParkingService {
 		placeparkingRepository.deleteById(id);
 		
 	}
-
+	
 	@Override
 	public Optional<PlaceParking> retrievePlaceParking(Long id) {
 		return placeparkingRepository.findById(id) ;
 
 	}
-
+	
 	@Override
-	public PlaceParking updatePlaceParking(PlaceParking placeparking) {
+	public PlaceParking updatePlaceParking(long id,PlaceParking placeparking) {
+		
+		 //parkingRepository.findById(id);
+		// placeparking.setParking(parkingRepository.findById(id).get());
 		return placeparkingRepository.save(placeparking);
 	}
+	
+	
+	
+	
 
 }

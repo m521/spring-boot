@@ -3,6 +3,7 @@ package tn.esprit.spring.Service;
 import java.util.List;
 import java.util.Optional;
 
+import tn.esprit.spring.Entity.PlaceParking;
 import tn.esprit.spring.Entity.User;
 
 public interface UserService {
@@ -11,5 +12,6 @@ public interface UserService {
 	void deleteUser (Long id);
 	Optional<User> retrieveUser (Long id);
 	User updateUser(User client);
-
-}
+	public List<User> sortUsers(List<User> users);
+	void assignUsersToPlaces(List<User> users, List<PlaceParking> places);
+	}

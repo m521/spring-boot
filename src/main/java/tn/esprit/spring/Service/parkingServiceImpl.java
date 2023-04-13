@@ -20,6 +20,7 @@ public class parkingServiceImpl implements ParkingService{
 	@Override
 	public Parking addParking(Parking p) {
 		 parkingRepository.save(p);
+		 
 		 return p;
 	}
 

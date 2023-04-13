@@ -1,6 +1,7 @@
 package tn.esprit.spring.Entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -32,8 +33,16 @@ public class Parking implements Serializable {
     @Column(name="capacite")
     private int capacite;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="parkings")
-    private Set<PlaceParking> placeparkings;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="parking")
+    private List<PlaceParking> placeparking;
+    
+	public List<PlaceParking> getPlaceparkings() {
+		return placeparking;
+	}
+
+	public void setPlaceparkings(List<PlaceParking> placeparking) {
+		this.placeparking = placeparking;
+	}
 
 	public long getId() {
 		return id;
@@ -67,17 +76,10 @@ public class Parking implements Serializable {
 		this.capacite = capacite;
 	}
 
-	public Set<PlaceParking> getPlaceparkings() {
-		return placeparkings;
-	}
-
-	public void setPlaceparkings(Set<PlaceParking> placeparkings) {
-		this.placeparkings = placeparkings;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 
 
 	

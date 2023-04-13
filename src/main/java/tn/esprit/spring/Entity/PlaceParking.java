@@ -1,13 +1,19 @@
 package tn.esprit.spring.Entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,11 +34,20 @@ public class PlaceParking implements Serializable {
     private String status;
    
 
-    @ManyToOne
-    Parking parkings ;
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="parking_id")
+    @JsonIgnore
+    private Parking parking;
 
-    @OneToOne(mappedBy = "placeparkings")
-    private User user;
+    public Parking getParking() {
+		return parking;
+	}
+
+
+	public void setParking(Parking parking) {
+		this.parking = parking;
+	}
+
 	
     public long getId() {
 		return id;
@@ -54,19 +69,13 @@ public class PlaceParking implements Serializable {
 	}
 
 
-	public Parking getParkings() {
-		return parkings;
-	}
-
-
-	public void setParkings(Parking parkings) {
-		this.parkings = parkings;
-	}
 
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
     
 
 	

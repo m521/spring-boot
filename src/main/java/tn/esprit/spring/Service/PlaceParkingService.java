@@ -7,8 +7,8 @@ import tn.esprit.spring.Entity.PlaceParking;
 
 public interface PlaceParkingService {
 	List<PlaceParking> retrieveAllPlaceParkings();
-	PlaceParking addPlaceParking (PlaceParking pp);
+	PlaceParking addPlaceParking (long id,PlaceParking pp);
 	void deletePlaceParking (Long id);
-	Optional<PlaceParking> retrievePlaceParking (Long id);
-	PlaceParking updatePlaceParking(PlaceParking placeparking);
+	PlaceParking updatePlaceParking(long id,PlaceParking placeparking);
+	Optional<PlaceParking> retrievePlaceParking(Long id);
 }
